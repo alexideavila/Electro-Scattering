@@ -61,12 +61,13 @@ while True:
         ax.set_title("Elastic and Vibrational Peaks")
         ax.set_xlabel("Scans")
         ax.set_ylabel("Counts")
-        ax.set_box_aspect(1)
+        ax.set_box_aspect(0.5)
         plt.show()
         option = input("Would you like to analyze more data?(y/n): ")
         if option == 'y':
             continue
         else:
+            print("Thank you for using my program! Bye!")
             break
     
     else:
