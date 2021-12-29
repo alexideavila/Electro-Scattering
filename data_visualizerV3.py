@@ -1,19 +1,18 @@
 # Created by Alexi De Avila Cadena
 #
 # libraries used for data visualization
-# Version 2, need to add user-inputted
-# files from terminal
+# Version 3, need to add smarter file
+# reading method
 #
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 
-#path = r"C:\Users\Alexi\Documents\dataES\10eV50degs0edited.ON1" # easier to write once
-
 counts = [] # comes from data file
+newcounts = [] # will be used to only get only numbers
 scans = [] # created later using length of counts
-path = r"C:\Users\Alexi\Documents\dataES" #defaults to some path on my PC
+path = r"C:\Users\Alexi\Documents\dataES" #defaults to some path on my PC but will changed by user
 
 def welcomeMessage():
     print("Created by Alexi De Avila Cadena\n")
@@ -21,7 +20,7 @@ def welcomeMessage():
     print("Welcome to my program! This programs aims to visualize data")
     print("which the user specifies. Please place the data file in the")
     print("documents folder dataES. And make sure the data  file has")
-    print(" no spaces in it. Make sure to add the file extension.")
+    print("no spaces in it. Make sure to add the file extension.")
 
 welcomeMessage()
 
@@ -33,22 +32,29 @@ while True:
     print("The new path is:", path)
     option = input("Is this correct?(y/n): ")# error checking and confirmation
     
+    # need to read file smarter by skipping some lines at beginning and end
     if option == 'y':
         print("Analyzing Data...")
         # opens the file object dataFile, reads and stores into a list/array of counts
         with open(path,'r') as dataFile:
             for line in dataFile:
                 counts.append(line)
-            
+        dataFile.close()
+        
+        # this for loop makes a new list that only contains the numbers needed
+        for d in range((len(counts)-17)): # 817-17 = 800
+            k = d+13 # start at line 13 because before is strings
+            newcounts.insert(d,counts[k]) # this will keep our numbers
+        
         # creates our scans file based on the counts    
-        for x in range(len(counts)):
+        for x in range(len(newcounts)):
             scans.insert(x,x)
 
-        counts = list(map(int, counts)) # makes sure our data is only integers
+        newcounts = list(map(int, newcounts)) # makes sure our data is only integers
 
         # both of our x and y values must be the same type/length, both arrays/lists
         x = scans
-        y = counts
+        y = newcounts
 
         fix, ax = plt.subplots()
         ax.scatter(x, y, marker='o', color='red') # formatting of the plot
@@ -70,4 +76,3 @@ while True:
         else:
             print("Bye!")
             break
-        
