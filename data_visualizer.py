@@ -3,7 +3,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 
-path = r"C:\Users\Alexi\Documents\data_visualizations\short10eV.txt" # easier to write once
+path = r"C:\Users\Alexi\Documents\dataES\10eV50degs0edited.ON1" # easier to write once
 counts = [] # comes from data file
 scans = [] # created later using length of counts
 
@@ -24,6 +24,7 @@ y = counts
 
 fix, ax = plt.subplots()
 ax.scatter(x, y, marker='o', color='red')
+ax.set_title("Elastic and Vibrational Peaks")
 ax.set_xlabel("Scans")
 ax.set_ylabel("Counts")
 ax.set_box_aspect(1)
