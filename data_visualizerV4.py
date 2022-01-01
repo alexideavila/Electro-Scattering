@@ -42,6 +42,8 @@ def helpMessage():
     print("X-Axis Label Change: xaxl")
     print("Changes done: done")
 
+# this function finds the biggest data point and returns it for the 
+# default value of the max value on the y-axis
 def findingMax(x):
     tempMax = 1
     for i in range(len(x)-1):
