@@ -1,7 +1,6 @@
 # Created by Alexi De Avila Cadena
-#
-# create an executable with buttons
-# basically, interactive
+# 
+# created more options I think
 #
 
 import matplotlib as mpl
